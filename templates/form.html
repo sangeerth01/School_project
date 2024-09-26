@@ -1,0 +1,41 @@
+{% load static %}
+
+{% block content %}
+<h1 style="text-align: center;">Student details</h1>
+<form style="text-align: center;" method="POST">
+    {% csrf_token %}
+    
+   <div class="form-row">
+    {{form.as_p}}
+    <input type="submit" value="add">
+   </div>
+</form>
+<h1>show details</h1>
+{% if stud %}
+<table border="2px">
+   <tr><th>name</th>
+   <th>email</th>
+<th>password</th>
+<th>edit</th>
+<th>delete</th>
+</tr>
+{% for stu in stud %}
+<tr><td>{{stu.name}}</td>
+<td>{{stu.email}}</td>
+<td>{{stu.password}}</td>
+<td><form action="" method = "POST">
+   {% csrf_token %}
+   <input type="submit" value="edit">
+</form></td>
+
+<td><form action="" method = "POST">
+   {% csrf_token %}
+   <input type="submit" value="delete">
+</form></td>
+</tr>
+{% endfor %}
+
+</table>
+{% endif %}
+
+{% endblock %}
